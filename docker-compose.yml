@@ -1,0 +1,11 @@
+version: '2.1'
+services:
+  ubuntu:
+    image: leontius/ubuntu-desktop-lxde-vnc
+    container_name: ubuntu_lxde_vnc
+    ports:
+     - "6080:80"
+    volumes:
+     - ./data:/root
+    environment:
+    - HTTP_PASSWORD=123

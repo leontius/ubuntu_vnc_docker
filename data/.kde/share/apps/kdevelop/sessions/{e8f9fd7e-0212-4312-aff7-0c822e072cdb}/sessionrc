@@ -1,0 +1,70 @@
+SessionName=default
+SessionPrettyContents=default:  test
+
+[Buildset]
+BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x00)
+
+[General Options]
+Open Projects=file:///root/projects/test/test.kdev4
+
+[Plugins]
+KDevCMakeDocumentationEnabled=false
+KDevCMakeManagerEnabled=false
+KDevManPageEnabled=true
+KDevNinjaBuilderEnabled=false
+KDevProjectManagerViewEnabled=true
+kdevappwizardEnabled=true
+kdevbazaarEnabled=false
+kdevclassbrowserEnabled=true
+kdevcodeutilsEnabled=true
+kdevcontextbrowserEnabled=true
+kdevcvsEnabled=true
+kdevdocumentswitcherEnabled=true
+kdevdocumentviewEnabled=true
+kdevexecuteEnabled=true
+kdevexecuteplasmoidEnabled=true
+kdevexecutescriptEnabled=true
+kdevexternalscriptEnabled=true
+kdevfilemanagerEnabled=true
+kdevfiletemplatesEnabled=true
+kdevgdbEnabled=true
+kdevghproviderEnabled=true
+kdevgitEnabled=true
+kdevgrepviewEnabled=true
+kdevkdeproviderEnabled=true
+kdevkonsoleviewEnabled=true
+kdevopenwithEnabled=true
+kdevpastebinEnabled=true
+kdevpatchreviewEnabled=true
+kdevproblemreporterEnabled=true
+kdevprojectdashboardEnabled=true
+kdevqthelpEnabled=true
+kdevquickopenEnabled=true
+kdevreviewboardEnabled=true
+kdevsnippetEnabled=true
+kdevsubversionEnabled=true
+kdevswitchtobuddyEnabled=true
+kdevtestviewEnabled=true
+kdevvcschangesviewpluginEnabled=true
+
+[ProjectManagerView]
+splitterState=\x00\x00\x00ÿ\x00\x00\x00\x00\x00\x00\x00\x02\x00\x008@\x00\x00\x1c¶\x01\x00\x00\x00\x01\x01\x00\x00\x00\x02
+
+[ProjectTreeView]
+Current=
+Expansion=
+HorizontalScroll=0
+Selection=
+VerticalScroll=0
+
+[Working File Sets][code_5447453]
+View 0=file:///root/projects/test/main.cpp
+View 0 Type=Text
+View Count=1
+persistent=false
+
+[Working File Sets][code_5447453|Code]
+Active View=file:///root/projects/test/main.cpp
+View 0=file:///root/projects/test/main.cpp
+View 0 State=Cursor=9,1
+View Count=1
