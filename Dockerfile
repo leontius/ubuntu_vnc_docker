@@ -1,16 +1,80 @@
 FROM dorowu/ubuntu-desktop-lxde-vnc:xenial
 
-RUN apt-get update && apt-get install -y wget git kdevelop && apt-get install -y libpcl-dev \
+# install packages
+RUN apt-get update && apt-get install -q -y \
+    dirmngr \
+    gnupg2 \
+    lsb-release \
     && rm -rf /var/lib/apt/lists/*
 
-# java 环境
-RUN apt-get update && apt-get install -y openjdk-8-jdk \
+# setup keys
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 421C365BD9FF1F717815A3895523BAEEB01FA116
+
+# setup sources.list
+RUN echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main" > /etc/apt/sources.list.d/ros-latest.list
+
+# install bootstrap tools
+RUN apt-get update && apt-get install --no-install-recommends -y \
+    python-rosdep \
+    python-rosinstall \
+    python-vcstools \
     && rm -rf /var/lib/apt/lists/*
 
-# cpp环境
-RUN apt-get update && apt-get install -y build-essential g++ cmake libavcodec-dev libavformat-dev libjpeg.dev libtiff4.dev libswscale-dev libjasper-dev \
+# setup environment
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
+
+# bootstrap rosdep
+RUN rosdep init \
+    && rosdep update
+
+# install ros core packages
+ENV ROS_DISTRO kinetic
+RUN apt-get update && apt-get install -y \
+    ros-kinetic-ros-core=1.3.2-0* \
     && rm -rf /var/lib/apt/lists/*
 
-# qt
-RUN apt-get update && apt-get install -y qt5-default qtcreator qt-sdk \
+# install ros base packages
+RUN apt-get update && apt-get install -y \
+    ros-kinetic-ros-base=1.3.2-0* \
     && rm -rf /var/lib/apt/lists/*
+
+# install ros robot packages
+RUN apt-get update && apt-get install -y \
+    ros-kinetic-robot=1.3.2-0* \
+    && rm -rf /var/lib/apt/lists/*
+
+# install ros desktop packages
+RUN apt-get update && apt-get install -y \
+    ros-kinetic-desktop=1.3.2-0* \
+    && rm -rf /var/lib/apt/lists/*
+
+# install ros desktop-full packages
+RUN apt-get update && apt-get install -y \
+    ros-kinetic-desktop-full=1.3.2-0* \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y \
+    wget git kdevelop && apt-get install -y libpcl-all \
+    && rm -rf /var/lib/apt/lists/*
+
+# install java
+RUN apt-get update && apt-get install -y \
+    openjdk-8-jdk \
+    && rm -rf /var/lib/apt/lists/*
+
+# install cpp
+RUN apt-get update && apt-get install -y \ 
+    build-essential g++ cmake libavcodec-dev libavformat-dev libjpeg.dev libtiff4.dev libswscale-dev libjasper-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# install qt
+# RUN apt-get update && apt-get install -y \
+#     qt5-default qtcreator qt-sdk \
+#     && rm -rf /var/lib/apt/lists/*
+
+# setup entrypoint
+COPY ./ros_entrypoint.sh /
+
+ENTRYPOINT ["/ros_entrypoint.sh"]
+CMD ["bash"]
