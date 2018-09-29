@@ -1,5 +1,7 @@
 FROM dorowu/ubuntu-desktop-lxde-vnc:xenial
 
+MAINTAINER Leon Zhang <albireo@live.cn>
+
 # install packages
 RUN apt-get update && apt-get install -q -y \
     dirmngr \
@@ -55,12 +57,37 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -y \
-    wget git kdevelop && apt-get install -y libpcl-all \
+    wget kdevelop \
     && rm -rf /var/lib/apt/lists/*
+
+# install pcl lib
+RUN apt-get update -qq && apt-get install -y --no-install-recommends \
+    make cmake build-essential git \
+    libeigen3-dev \
+    libflann-dev \
+    libusb-1.0-0-dev \
+    libvtk6-qt-dev \
+    libpcap-dev \
+    libboost-all-dev \
+    libproj-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# install pcl
+RUN \
+    git config --global http.sslVerify false && \
+    git clone --branch pcl-1.8.0 --depth 1 https://github.com/PointCloudLibrary/pcl.git pcl-trunk && \
+    cd pcl-trunk && \
+    mkdir build && cd build && \
+    cmake -DCMAKE_BUILD_TYPE=Release .. && \
+    make -j 4 && make install && \
+    make clean
+
+RUN ldconfig
 
 # install java
 RUN apt-get update && apt-get install -y \
     openjdk-8-jdk \
+    && openjdk-8-jre \
     && rm -rf /var/lib/apt/lists/*
 
 # install cpp
