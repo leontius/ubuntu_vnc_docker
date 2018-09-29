@@ -18,6 +18,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     python-rosdep \
     python-rosinstall \
     python-vcstools \
+    python-rosinstall-generator \
+    python-wstool \
     && rm -rf /var/lib/apt/lists/*
 
 # setup environment
@@ -30,32 +32,10 @@ RUN rosdep init \
 
 # install ros core packages
 ENV ROS_DISTRO kinetic
-RUN apt-get update && apt-get install -y \
-    ros-kinetic-ros-core=1.3.2-0* \
-    && rm -rf /var/lib/apt/lists/*
-
-# install ros base packages
-RUN apt-get update && apt-get install -y \
-    ros-kinetic-ros-base=1.3.2-0* \
-    && rm -rf /var/lib/apt/lists/*
-
-# install ros robot packages
-RUN apt-get update && apt-get install -y \
-    ros-kinetic-robot=1.3.2-0* \
-    && rm -rf /var/lib/apt/lists/*
-
-# install ros desktop packages
-RUN apt-get update && apt-get install -y \
-    ros-kinetic-desktop=1.3.2-0* \
-    && rm -rf /var/lib/apt/lists/*
 
 # install ros desktop-full packages
 RUN apt-get update && apt-get install -y \
     ros-kinetic-desktop-full=1.3.2-0* \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update && apt-get install -y \
-    wget kdevelop \
     && rm -rf /var/lib/apt/lists/*
 
 # install java
@@ -67,6 +47,7 @@ RUN apt-get update && apt-get install -y \
 # install cpp
 RUN apt-get update && apt-get install -y \ 
     build-essential g++ cmake libavcodec-dev libavformat-dev libjpeg.dev libtiff4.dev libswscale-dev libjasper-dev \
+    wget kdevelop \
     && rm -rf /var/lib/apt/lists/*
 
 # install qt
@@ -76,6 +57,4 @@ RUN apt-get update && apt-get install -y \
 
 # setup entrypoint
 COPY ./ros_entrypoint.sh /
-
 ENTRYPOINT ["/ros_entrypoint.sh"]
-CMD ["bash"]
