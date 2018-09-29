@@ -61,7 +61,7 @@ RUN apt-get update && apt-get install -y \
 # install java
 RUN apt-get update && apt-get install -y \
     openjdk-8-jdk \
-    && openjdk-8-jre \
+    openjdk-8-jre \
     && rm -rf /var/lib/apt/lists/*
 
 # install cpp
