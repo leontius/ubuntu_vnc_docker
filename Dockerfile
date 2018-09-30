@@ -56,4 +56,5 @@ RUN apt-get update && apt-get install -y \
 #     && rm -rf /var/lib/apt/lists/*
 
 # setup entrypoint
+USER root
 RUN /bin/bash -c "source '/opt/ros/kinetic/setup.bash'"
