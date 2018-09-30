@@ -56,5 +56,4 @@ RUN apt-get update && apt-get install -y \
 #     && rm -rf /var/lib/apt/lists/*
 
 # setup entrypoint
-COPY ./ros_entrypoint.sh /
-ENTRYPOINT ["/ros_entrypoint.sh"]
+RUN source "/opt/ros/kinetic/setup.bash"
