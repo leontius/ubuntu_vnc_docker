@@ -58,5 +58,5 @@ RUN apt-get update && apt-get install -y \
 # setup entrypoint
 USER root
 # setup ros env
-RUN echo "source "/opt/ros/$ROS_DISTRO/setup.bash"" >> /root/.bashrc \
+RUN echo "source "/opt/ros/$ROS_DISTRO/setup.bash"" > /root/.bashrc \
     && /bin/bash -c "source /root/.bashrc"
