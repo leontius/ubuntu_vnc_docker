@@ -57,4 +57,4 @@ RUN apt-get update && apt-get install -y \
 
 # setup entrypoint
 COPY ./ros_entrypoint.sh /ros_entrypoint.sh
-RUN /ros_entrypoint.sh
+RUN /bin/bash /ros_entrypoint.sh
