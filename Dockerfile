@@ -57,4 +57,6 @@ RUN apt-get update && apt-get install -y \
 
 # setup entrypoint
 USER root
-RUN /bin/bash -c "source /opt/ros/kinetic/setup.bash"
+# setup ros env
+RUN echo "source "/opt/ros/$ROS_DISTRO/setup.bash"" >> /root/.bashrc \
+    && /bin/bash -c "source /root/.bashrc"
