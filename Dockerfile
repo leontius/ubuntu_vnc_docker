@@ -66,9 +66,8 @@ RUN cd VTK-7.1.0 && \
     mkdir build && \
     cd build && \
     cmake .. && \
-    make -j4 && \
-    make install && \
-    make clean
+    make -j8 && \
+    make install
 
 # PCL 1.8.0
 RUN wget --quiet https://github.com/PointCloudLibrary/pcl/archive/pcl-1.8.0.tar.gz && \
@@ -78,9 +77,8 @@ RUN cd pcl-pcl-1.8.0 && \
     mkdir build && \
     cd build && \
     cmake .. && \
-    make -j4 && \
-    make install && \
-    make clean
+    make -j8 && \
+    make install
 
 # clean tmp files
 RUN rm -r /VTK-7.1.0 && \
