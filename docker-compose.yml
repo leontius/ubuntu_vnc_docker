@@ -6,6 +6,6 @@ services:
     ports:
      - "6080:80"
     volumes:
-     - ./data:/root
+     - ./data:/root/Desktop
     environment:
     - HTTP_PASSWORD=123
