@@ -1,7 +1,7 @@
 version: '2.1'
 services:
   ubuntu:
-    image: leontius/ubuntu-desktop-lxde-vnc
+    image: leontius/ubuntu-desktop-lxde-vnc:ros
     container_name: ubuntu_lxde_vnc
     ports:
      - "6080:80"
