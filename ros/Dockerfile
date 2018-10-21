@@ -51,3 +51,8 @@ RUN apt-get update && apt-get install -y \
 # setup ros env
 RUN echo "source "/opt/ros/$ROS_DISTRO/setup.bash"" > /root/.bashrc \
     && /bin/bash -c "source /root/.bashrc"
+
+# install gimp
+RUN apt-get update && apt-get install -y \ 
+    gimp \
+    && rm -rf /var/lib/apt/lists/*
